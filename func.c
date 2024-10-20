@@ -34,10 +34,20 @@ void tower_init(tower *p)
 
 void inline tower_print(tower *tow)
 {
+	extern int hold;
+	extern int last;
+
 	clear();
-	printf("Top:    %4d %4d %4d\n",
+	if (last != 0) {
+		for (int i=0; i<=last; i++)
+			printf("     ");
+		printf("%d", hold);
+	}
+	printf("\n\n");
+
+	printf("Top:   %4d %4d %4d\n",
 			TOP(1), TOP(2), TOP(3));
-	printf("Bottom: %4d %4d %4d\n",
+	printf("Bottom:%4d %4d %4d\n",
 			BOTTOM(1), BOTTOM(2), BOTTOM(3));
 }
 

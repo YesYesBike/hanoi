@@ -2,6 +2,10 @@
 #include "hanoi.h"
 #include "func.h"
 
+int hold = 0;
+int last = 0;
+int count = 0;
+
 void hanoi(int n)
 {
 	tower tow[TOWERS];
@@ -9,7 +13,8 @@ void hanoi(int n)
 	for (int i=n; i>=1; i--)
 		push(tow, 1, i);
 
-	int hold = 0;
+	extern int hold;
+	extern int last;
 	for (;;) {
 		int target;
 		tower_print(tow);
@@ -23,8 +28,8 @@ L_PICK_ENTER_AGAIN:
 				goto L_PICK_ENTER_AGAIN;
 			}
 			hold = pop(tow, target);
+			last = target;
 		} else {
-			printf("You are holding %d\n", hold);
 			printf("Put down the block to the tower.\n");
 L_PUT_ENTER_AGAIN:
 			get_number(&target, TOWERS);
@@ -34,6 +39,8 @@ L_PUT_ENTER_AGAIN:
 			}
 			push(tow, target, hold);
 			hold = 0;
+			last = 0;
+			count++;
 
 			//MOVE TO THE THIRD TOWWWWWER
 			//if (TOP(1) == 0 && TOP(3) == 0)
@@ -44,7 +51,7 @@ L_PUT_ENTER_AGAIN:
 	}
 
 	tower_print(tow);
-	printf("You cleared!\n");
+	printf("You cleared! (count: %d)\n", count);
 	tower_free(tow);
 	buf_clear();
 }

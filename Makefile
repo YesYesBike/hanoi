@@ -1,6 +1,6 @@
 TARGET = hanoi
 CC = cc
-CFLAGS = -g
+#CFLAGS = -g
 OBJ = main.o func.o
 
 $(TARGET): $(OBJ)
@@ -9,7 +9,7 @@ $(TARGET): $(OBJ)
 main.o: main.c hanoi.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-func.o: func.c func.h hanoi.h
+func.o: func.c hanoi.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
