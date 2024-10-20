@@ -36,9 +36,9 @@ L_PUT_ENTER_AGAIN:
 			hold = 0;
 
 			//MOVE TO THE THIRD TOWWWWWER
-			//if (TOP(2) == 1 && BOTTOM(2) == n && TOP(1) == 0 && TOP(3) == 0)
+			//if (TOP(1) == 0 && TOP(3) == 0)
 			//	break;
-			if (TOP(3) == 1 && BOTTOM(3) == n && TOP(1) == 0 && TOP(2) == 0)
+			if (TOP(1) == 0 && TOP(2) == 0)
 				break;
 		}
 	}

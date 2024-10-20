@@ -15,14 +15,10 @@ void inline buf_clear(void)
 void get_number(int *n, int max)
 {
 	printf("Enter the number(1-%d): ", max);
-	while (scanf("%d", n) != 1) {
-L_GET_NUM_AGAIN:
+	while (scanf("%d", n) != 1 || *n < 1 || *n > max) {
 		buf_clear();
 		printf("Enter the right number(1-%d): ", max);
 	}
-
-	if (*n < 1 || *n > max)
-		goto L_GET_NUM_AGAIN;
 }
 
 
