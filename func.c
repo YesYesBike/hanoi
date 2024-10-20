@@ -3,7 +3,16 @@
 
 void inline clear(void)
 {
+	extern int hold;
+	extern int last;
+
 	system("clear");
+	if (last != 0) {
+		for (int i=0; i<=last; i++)
+			printf("     ");
+		printf("%d", hold);
+	}
+	printf("\n\n");
 }
 
 void inline buf_clear(void)
@@ -34,16 +43,7 @@ void tower_init(tower *p)
 
 void inline tower_print(tower *tow)
 {
-	extern int hold;
-	extern int last;
-
 	clear();
-	if (last != 0) {
-		for (int i=0; i<=last; i++)
-			printf("     ");
-		printf("%d", hold);
-	}
-	printf("\n\n");
 
 	printf("Top:   %4d %4d %4d\n",
 			TOP(1), TOP(2), TOP(3));
