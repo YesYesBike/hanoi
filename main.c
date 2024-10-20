@@ -52,6 +52,7 @@ L_PUT_ENTER_AGAIN:
 
 	tower_print(tow);
 	printf("You cleared! (count: %d)\n", count);
+	count = 0;
 	tower_free(tow);
 	buf_clear();
 }
