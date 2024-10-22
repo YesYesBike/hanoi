@@ -30,7 +30,7 @@ void get_number(int *n, int max)
 	}
 }
 
-int mcount(int n)
+uint64_t mcount(int n)
 {
 	int ret = 1;
 	for (int i=2; i<=n; i++)
@@ -78,18 +78,18 @@ void push(tower *p, int n, int val)
 {
 	node *new = malloc(sizeof(node));
 	new->val = val;
-	new->next = (p+n-1)->head;
-	if ((p+n-1)->z->next == NULL)
-		(p+n-1)->z = new;
-	(p+n-1)->head = new;
+	new->next = (p+n)->head;
+	if ((p+n)->z->next == NULL)
+		(p+n)->z = new;
+	(p+n)->head = new;
 }
 
 int pop(tower *p, int n)
 {
-	node *rp = (p+n-1)->head;
-	(p+n-1)->head = (p+n-1)->head->next;
-	if (rp == (p+n-1)->z)
-		(p+n-1)->z = (p+n-1)->head;
+	node *rp = (p+n)->head;
+	(p+n)->head = (p+n)->head->next;
+	if (rp == (p+n)->z)
+		(p+n)->z = (p+n)->head;
 	int ret = rp->val;
 	rp->next = NULL;
 	free(rp);
