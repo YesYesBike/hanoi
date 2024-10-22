@@ -1,7 +1,7 @@
 #include "hanoi.h"
 #include "func.h"
 
-void inline clear(void)
+void clear(void)
 {
 	extern int hold;
 	extern int last;
@@ -28,6 +28,15 @@ void get_number(int *n, int max)
 		buf_clear();
 		printf("Enter the right number(1-%d): ", max);
 	}
+}
+
+int mcount(int n)
+{
+	int ret = 1;
+	for (int i=2; i<=n; i++)
+		ret = ret*2 + 1;
+
+	return ret;
 }
 
 

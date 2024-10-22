@@ -15,6 +15,7 @@ void hanoi(int n)
 
 	extern int hold;
 	extern int last;
+	int min_count = mcount(n);
 	for (;;) {
 		int target;
 		tower_print(tow);
@@ -51,7 +52,7 @@ L_PUT_ENTER_AGAIN:
 	}
 
 	tower_print(tow);
-	printf("You cleared! (count: %d)\n", count);
+	printf("You cleared! (count: %d / min: %d)\n", count, min_count);
 	count = 0;
 	tower_free(tow);
 	buf_clear();

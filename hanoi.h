@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define MAX_HEIGHT		11	/* It's hard enough */
-#define TOWERS			3	/* Make a fun yourself */
+#define MAX_HEIGHT		9999	/* It's hard enough */
+#define TOWERS			3		/* Make a fun yourself */
 #define TOP(x)			(tow+((x)-1))->head->val
 #define BOTTOM(x)		(tow+((x)-1))->z->val
 
