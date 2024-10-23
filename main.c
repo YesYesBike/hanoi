@@ -1,10 +1,5 @@
 #include <stdio.h>
 #include "hanoi.h"
-#include "func.h"
-
-int hold = 0;
-int last = 0;
-int count = 0;
 
 void hanoi(int n)
 {
@@ -13,30 +8,32 @@ void hanoi(int n)
 	for (int i=n; i>=1; i--)
 		push(tow, 0, i);
 
-	extern int hold;
-	extern int last;
+	int hold = 0;
+	int last = 0;
+	int count = 0;
+
 	uint64_t min_count = mcount(n);
 	for (;;) {
 		int target;
-		tower_print(tow);
+		tower_print(tow, hold, last);
 		
 		if (hold == 0) {
 			printf("Pick up the block from the tower.\n");
-L_PICK_ENTER_AGAIN:
-			get_number(&target, TOWERS);
-			if (TOP(target) == 0) {
+			for (;;) {
+				get_number(&target, TOWERS);
+				if (TOP(target) != 0)
+					break;
 				printf("Tower %d is empty!\n", target);
-				goto L_PICK_ENTER_AGAIN;
 			}
 			hold = pop(tow, target-1);
 			last = target;
 		} else {
 			printf("Put down the block to the tower.\n");
-L_PUT_ENTER_AGAIN:
-			get_number(&target, TOWERS);
-			if (hold > TOP(target) && TOP(target) != 0) {
+			for (;;) {
+				get_number(&target, TOWERS);
+				if (hold < TOP(target) || TOP(target) == 0)
+					break;
 				printf("You can't put the larger block.\n");
-				goto L_PUT_ENTER_AGAIN;
 			}
 			push(tow, target-1, hold);
 			hold = 0;
@@ -51,9 +48,8 @@ L_PUT_ENTER_AGAIN:
 		}
 	}
 
-	tower_print(tow);
+	tower_print(tow, hold, last);
 	printf("You cleared! (count: %d / min: %lld)\n", count, min_count);
-	count = 0;
 	tower_free(tow);
 	buf_clear();
 }
