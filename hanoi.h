@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define MAX_HEIGHT		63		/* 64 is possible but makes code messy */
+#define MAX_HEIGHT		64		/* UNSIGNED LONG LONG */
 #define TOWERS			3		/* Make a fun yourself */
 #define TOP(x)			(tow+((x)-1))->head->val
 #define BOTTOM(x)		(tow+((x)-1))->z->val

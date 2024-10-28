@@ -12,7 +12,7 @@ void hanoi(int n)
 	int last = 0;
 	int count = 0;
 
-	uint64_t min_count = (1 << n) + 0xFFFFFFFF;		//1<<64 is 1 not 0 lol
+	uint64_t min_count = 0xFFFFFFFF >> (64-n);
 	for (;;) {
 		int target;
 		tower_print(tow, hold, last);
