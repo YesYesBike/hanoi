@@ -12,7 +12,7 @@ void hanoi(int n)
 	int last = 0;
 	int count = 0;
 
-	uint64_t min_count = mcount(n);
+	uint64_t min_count = (1 << n) + 0xFFFFFFFF;		//1<<64 is 1 not 0 lol
 	for (;;) {
 		int target;
 		tower_print(tow, hold, last);
@@ -49,9 +49,8 @@ void hanoi(int n)
 	}
 
 	tower_print(tow, hold, last);
-	printf("You cleared! (count: %d / min: %lld)\n", count, min_count);
+	printf("You cleared! (count: %d / min: %llu)\n", count, min_count);
 	tower_free(tow);
-	buf_clear();
 }
 
 int main(void)

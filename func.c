@@ -1,6 +1,6 @@
 #include "hanoi.h"
 
-void inline buf_clear(void)
+inline void buf_clear(void)
 {
 	while (getchar() != '\n')
 		;
@@ -13,8 +13,10 @@ void get_number(int *n, int max)
 		buf_clear();
 		printf("Enter the right number(1-%d): ", max);
 	}
+	buf_clear();
 }
 
+/* the prototype of min_count
 uint64_t mcount(int n)
 {
 	int ret = 1;
@@ -23,6 +25,7 @@ uint64_t mcount(int n)
 
 	return ret;
 }
+*/
 
 
 void tower_init(tower *p)
