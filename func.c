@@ -28,6 +28,7 @@ uint64_t mcount(int n)
 */
 
 
+/* Stack as linked list
 void tower_init(tower *p)
 {
 	for (int i=0; i<TOWERS; i++) {
@@ -36,22 +37,6 @@ void tower_init(tower *p)
 		(p+i)->z->val = 0;
 		(p+i)->z->next = NULL;
 	}
-}
-
-void tower_print(tower *tow, int hold, int last)
-{
-	clear();
-	if (last != 0) {
-		for (int i=0; i<=last; i++)
-			printf("     ");
-		printf("%d", hold);
-	}
-	printf("\n\n");
-
-	printf("Top:   %4d %4d %4d\n",
-			TOP(1), TOP(2), TOP(3));
-	printf("Bottom:%4d %4d %4d\n",
-			BOTTOM(1), BOTTOM(2), BOTTOM(3));
 }
 
 void tower_free(tower *p)
@@ -87,6 +72,41 @@ int pop(tower *p, int n)
 	int ret = rp->val;
 	rp->next = NULL;
 	free(rp);
+
+	return ret;
+}
+*/
+
+//void tower_print(tower *tow, int hold, int last)
+void tower_print(int tow[][MAX_HEIGHT+1], int hold, int last)
+{
+	clear();
+	if (last != 0) {
+		for (int i=0; i<=last; i++)
+			printf("     ");
+		printf("%d", hold);
+	}
+	printf("\n\n");
+
+	printf("Top:   %4d %4d %4d\n",
+			TOP(0), TOP(1), TOP(2));
+	printf("Bottom:%4d %4d %4d\n",
+			BOTTOM(0), BOTTOM(1), BOTTOM(2));
+}
+
+
+void push(int tow[][MAX_HEIGHT+1], int n, int val)
+{
+	tow[n][TOP_IDX(n)+1] = val;
+	TOP_IDX(n)++;
+}
+
+int pop(int tow[][MAX_HEIGHT+1], int n)
+{
+	int ret = TOP(n);
+
+	TOP(n) = 0;
+	TOP_IDX(n)--;
 
 	return ret;
 }

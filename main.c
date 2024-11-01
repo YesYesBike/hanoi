@@ -3,8 +3,12 @@
 
 void hanoi(int n)
 {
-	tower tow[TOWERS];
-	tower_init(tow);
+	//tower tow[TOWERS];
+	//tower_init(tow);
+	
+	//the first value of each towers indicates the top of the stack.
+	int tow[TOWERS][MAX_HEIGHT+1] = {};
+
 	for (int i=n; i>=1; i--)
 		push(tow, 0, i);
 
@@ -21,7 +25,7 @@ void hanoi(int n)
 			printf("Pick up the block from the tower.\n");
 			for (;;) {
 				get_number(&target, TOWERS);
-				if (TOP(target) != 0)
+				if (TOP(target-1) != 0)
 					break;
 				printf("Tower %d is empty!\n", target);
 			}
@@ -31,7 +35,7 @@ void hanoi(int n)
 			printf("Put down the block to the tower.\n");
 			for (;;) {
 				get_number(&target, TOWERS);
-				if (hold < TOP(target) || TOP(target) == 0)
+				if (hold < TOP(target-1) || TOP(target-1) == 0)
 					break;
 				printf("You can't put the larger block.\n");
 			}
@@ -41,16 +45,16 @@ void hanoi(int n)
 			count++;
 
 			//MOVE TO THE THIRD TOWWWWWER
-			//if (TOP(1) == 0 && TOP(3) == 0)
+			//if (TOP(0) == 0 && TOP(2) == 0)
 			//	break;
-			if (TOP(1) == 0 && TOP(2) == 0)
+			if (TOP(0) == 0 && TOP(1) == 0)
 				break;
 		}
 	}
 
 	tower_print(tow, hold, last);
 	printf("You cleared! (count: %d / min: %llu)\n", count, min_count);
-	tower_free(tow);
+	//tower_free(tow);
 }
 
 int main(void)
