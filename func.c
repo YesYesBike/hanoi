@@ -78,35 +78,34 @@ int pop(tower *p, int n)
 */
 
 //void tower_print(tower *tow, int hold, int last)
-void tower_print(int tow[][MAX_HEIGHT+1], int hold, int last)
+void tower_print(int tow[][MAX_HEIGHT + 1], int hold, int last)
 {
 	clear();
 	if (last != 0) {
-		for (int i=0; i<=last; i++)
+		for (int i = 0; i <= last; i++)
 			printf("     ");
 		printf("%d", hold);
 	}
 	printf("\n\n");
 
 	printf("Top:   %4d %4d %4d\n",
-			TOP(0), TOP(1), TOP(2));
+			TOP(tow, 0),  TOP(tow, 1),  TOP(tow, 2));
 	printf("Bottom:%4d %4d %4d\n",
-			BOTTOM(0), BOTTOM(1), BOTTOM(2));
+			BOTTOM(tow, 0),  BOTTOM(tow, 1),  BOTTOM(tow, 2));
 }
 
 
-void push(int tow[][MAX_HEIGHT+1], int n, int val)
+void push(int tow[][MAX_HEIGHT + 1], int n, int val)
 {
-	tow[n][TOP_IDX(n)+1] = val;
-	TOP_IDX(n)++;
+	tow[n][++TOP_IDX(tow, n)] = val;
 }
 
-int pop(int tow[][MAX_HEIGHT+1], int n)
+int pop(int tow[][MAX_HEIGHT + 1], int n)
 {
-	int ret = TOP(n);
+	int ret = TOP(tow, n);
 
-	TOP(n) = 0;
-	TOP_IDX(n)--;
+	TOP(tow, n) = 0;
+	TOP_IDX(tow, n)--;
 
 	return ret;
 }

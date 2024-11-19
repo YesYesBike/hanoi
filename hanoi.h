@@ -5,9 +5,9 @@
 #define MAX_HEIGHT		64		/* UNSIGNED LONG LONG */
 #define TOWERS			3		/* Make a fun yourself */
 
-#define TOP_IDX(x)		tow[(x)][0]
-#define TOP(x)			tow[(x)][TOP_IDX(x)]
-#define BOTTOM(x)		tow[(x)][1]
+#define TOP_IDX(t,x)		((t)[(x)][0])
+#define TOP(t,x)			((t)[(x)][TOP_IDX(t,x)])
+#define BOTTOM(t,x)			((t)[(x)][1])
 //#define TOP(x)			(tow+((x)-1))->head->val
 //#define BOTTOM(x)			(tow+((x)-1))->z->val
 #define clear()			system("clear")
